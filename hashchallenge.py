@@ -24,15 +24,16 @@ def file_description():
     return """
     The challenge file will have one challenge per line in the following format
         
-        type [hashcat_mask|num_words] algorithm description [file] [file_size]
+        type [hashcat_mask|num_words] algorithm description [file] [file_size] [points]
     
     type is either h or w.  h is a hashcat mask, w is words from a file
-    hashcat_mask is a mask in hashcat format if the type is h.
-    num_words is the number of words from the given file if the type is w
-    algorithm is one of md5, sha1, sha256, bcrypt, or scrypt
-    description is a description of the challenge
-    file is the file from which the words will be obtained with one word per line  This argument is required if the type is 'w'
-    file_size is the size of the file given.  This argument is required if a file is given
+    hashcat_mask - a mask in hashcat format if the type is h.
+    num_words - the number of words from the given file if the type is w
+    algorithm - one of md5, sha1, sha256, bcrypt, or scrypt
+    description - a description of the challenge
+    file - the file from which the words will be obtained with one word per line  This argument is required if the type is 'w'
+    file_size - the size of the file given.  This argument is required if a file is given
+    points - the number of points the challenge is worth
     """
 
 if __name__ == '__main__':
