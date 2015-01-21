@@ -2,17 +2,17 @@
 
 Copy this table into the submission box and fill in the estimated entropy (in bits) represented by the character space of the input, the colliding input you believe resulted in the output, and the method you used to find the collision.  The table includes the hash, the algorithm used to create the hash, and the character space of the input used to create the hash.  The points indicate how much each hash is worth.
 
-|   Number |   Points | Description                | Hash                                                             | Alg    | Collision   | Entropy   | Method   |
-|---------:|---------:|:---------------------------|:-----------------------------------------------------------------|:-------|:------------|:----------|:---------|
-|        1 |        1 | 4 digits                   | db2de541293171af2b0ccdf7c64d72d4                                 | md5    |             |           |          |
-|        2 |        1 | 4 digits                   | 86ca4b94b6838eba758fcdd9da31a4c5cc384526                         | sha1   |             |           |          |
-|        3 |        1 | 4 digits                   | e495105c5ee3a20067fe6e4cf513511742e5a72f1c4f1cb8e16204582123ab24 | sha256 |             |           |          |
-|        4 |        1 | 8 digits                   | 4f8d26c8d61b9eb8a59c2824dda1eac4                                 | md5    |             |           |          |
-|        5 |        1 | 8 digits                   | f92599559da1a7c7e2ffef9d62a02b5f3a66bdbd                         | sha1   |             |           |          |
-|        6 |        1 | 8 digits                   | 65c5c26ec8fb3ae500a9276ba6512a39f962e2ae3bcd4ecdfa58534d0d71010a | sha256 |             |           |          |
-|        7 |        1 | 6 alphanumeric             | a7be844c950c9e571ed7bf8ab13f5f6b                                 | md5    |             |           |          |
-|        8 |        1 | 5 all                      | 998ceac531afd95223132a5f5748fea5412322ab                         | sha1   |             |           |          |
-|        9 |        1 | common english word        | 1a954628a960aaef81d7b2d4521929579f3541e6                         | sha1   |             |           |          |
-|       10 |        1 | uncommon english word      | c018019b6a8b01ab5868cf4be8db327a7549ae03202548b9ffcd2671c4c2b624 | sha256 |             |           |          |
-|       11 |        1 | three common english words | daaea54d3daa18016003aab00635c472                                 | md5    |             |           |          |
-|       12 |        1 | uncommon english word      | d9765135f2bdec483fc09b003219a8da                                 | md5    |             |           |          |
+|   Number |   Points | Description                           | Hash                                                             | Alg    | Collision   | Entropy   | Method   |
+|---------:|---------:|:--------------------------------------|:-----------------------------------------------------------------|:-------|:------------|:----------|:---------|
+|        1 |        1 | 4 digits                              | e0a7abe479216a022d2ed84c74f0eb6d                                 | md5    |             |           |          |
+|        2 |        1 | 4 digits                              | 8974b8371b6ef83d5e4699ea78be68be596453fe                         | sha1   |             |           |          |
+|        3 |        1 | 4 digits                              | eb5af8ab99b55cda453f70e6a92c7b327bd8f76f49ff6a81c18ade4c26690057 | sha256 |             |           |          |
+|        4 |        1 | 8 digits                              | a9465e750bad8a2a37d6d0397e9a74bf                                 | md5    |             |           |          |
+|        5 |        1 | 8 digits                              | 872dadca3cdb3f6a0becab650367232420a9efc6                         | sha1   |             |           |          |
+|        6 |        1 | the letter a and 8 digits             | 3a4061bf29571f9cb129a3068d54d8f24e5ffe2066dfa319b7d5950725669037 | sha256 |             |           |          |
+|        7 |        1 | 6 alphanumeric                        | 73fe4a634c8a82c58961ab650f126cf4                                 | md5    |             |           |          |
+|        8 |        1 | 5 all                                 | 65284d71f05a2502b5fd28d4ac75dfeb91bdd6e5                         | sha1   |             |           |          |
+|        9 |        1 | common english word                   | 0b1e95cfd9775191a7224d0a218ae79187e80c1d                         | sha1   |             |           |          |
+|       10 |        1 | uncommon english word                 | 418e1fe2c0d3c9fe1e0e70cfaac49d820d89f2c0b98681882ecbb6f4a217691e | sha256 |             |           |          |
+|       11 |        1 | three common english words            | 0b3560d3a472229ea2163b44f560fc2d                                 | md5    |             |           |          |
+|       12 |        1 | uncommon english word plus two digits | 461a6c25480316f8f00161f3b339a24b                                 | md5    |             |           |          |

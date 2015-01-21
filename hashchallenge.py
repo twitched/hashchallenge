@@ -7,7 +7,7 @@ Create hash cracking challenges
 
 import os, sys, argparse, shlex, challenge, tabulate, collections
 
-pwd = os.path.dirname(os.path.abspath(__file__))
+pwd = os.getcwd()
 
 def main(argv):
     args = parse_args(argv)
@@ -89,12 +89,10 @@ def generate_challenges(challenge_file):
 def generate_challenge_from_line(line):
     print line
     parts = shlex.split(line)
-    if parts[0] == 'h':
-        return challenge.Mask_challenge(parts[1], parts[3], parts[4], parts[2]) #1 - points, 3 - alg, 4 - desc, 2 - mask
-    elif parts[0] == 'w':
-        return challenge.Word_challenge(parts[1], parts[3], parts[4], parts[5], int(parts[6]), int(parts[2]))#1 - points, 3 - alg, 4 - desc, 5 - file, 6 - max_word 2 - num_words
+    if len(parts) > 4:
+        return challenge.Mask_challenge(parts[0], parts[2], parts[3], parts[1], parts[4], int(parts[5]), int(parts[6]))
     else:
-        raise Exception('invalid challenge type')
+        return challenge.Mask_challenge(parts[0], parts[2], parts[3], parts[1])
     
 
 if __name__ == '__main__':
