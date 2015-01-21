@@ -29,7 +29,7 @@ def file_description():
     return """
     The challenge file will have one challenge per line in the following format
         
-        type points (hashcat_mask|num_words) algorithm description [url] [max_word]
+        points mask algorithm description [url] [min_word][max_word]
     
     type is either h or w.  h is a hashcat mask, w is words from a file
     points - the number of points the challenge is worth
@@ -38,7 +38,8 @@ def file_description():
     algorithm - one of md5, sha1, or sha256
     description - a description of the challenge
     url - URL of the file from which the words will be obtained with one word per line  This argument is required if the type is 'w'
-    max_word - the size of the file given or the highest line to be read in the file.  This argument is required if a file is given
+    min_word - the first line in the range from which to choose the words
+    max_word - the last line in the range from which to choose the words
     """
 
 def create_challenge_files(args):
