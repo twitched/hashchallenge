@@ -1,7 +1,9 @@
 # hashchallenge
 Create password cracking challenges.
 
-I created this program to generate challenges for my security students to crack.  
+I created this program to generate challenges for my security students to crack.
+
+[Example output](https://github.com/twitched/hashchallenge/blob/master/test/test_output/bob.md)
 
     usage: hashchallenge.py [-h] [-l NAMELIST] [-n NUMBER] [-c CHALLENGE_FILE]
     
