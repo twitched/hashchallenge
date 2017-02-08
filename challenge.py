@@ -32,7 +32,8 @@ class Mask_challenge(Challenge):
         lower = string.ascii_lowercase
         upper = string.ascii_uppercase
         digits = string.digits
-        punct = ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' #from http://hashcat.net/wiki/doku.php?id=mask_attack
+        punct = ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{}~' #from http://hashcat.net/wiki/doku.php?id=mask_attack 
+		#"|" not included because it messes up markdown tables
     
         password = ''
         q = False #if the previous char was a ?
