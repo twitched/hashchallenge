@@ -1,4 +1,4 @@
-import random, string, hashlib, urllib2
+import random, string, hashlib, urllib.request
 
 random = random.SystemRandom()
 
@@ -13,8 +13,8 @@ class Challenge:
         self.digest = self.password_to_digest(self.alg, self.password).hexdigest()
     
     def password_to_digest(self, alg, password):
-        if alg in hashlib.algorithms:
-            return getattr(hashlib, alg)(password)
+        if alg in hashlib.algorithms_available:
+            return getattr(hashlib, alg)(password.encode('utf-8'))
         
     
 class Mask_challenge(Challenge):
@@ -39,7 +39,7 @@ class Mask_challenge(Challenge):
         q = False #if the previous char was a ?
         for char in mask:
             if q:
-                print char
+                print(char)
                 if char == 'l':
                     password += random.choice(lower)
                 elif char == 'u':
@@ -50,7 +50,7 @@ class Mask_challenge(Challenge):
                     password += random.choice(punct)
                 elif char == '9':
                     password += random.choice(lower + upper + digits)
-                    print 'password right now: ' + password
+                    print('password right now: ' + password)
                 elif char == 'a':
                     password += random.choice(lower + upper + digits + punct)
                 elif char == 'w':
@@ -67,9 +67,9 @@ class Mask_challenge(Challenge):
         return password    
         
     def url_to_random_word(self, url, min_word, max_word):
-        f = urllib2.urlopen(url)
+        f = urllib.request.urlopen(url)
 
         for j in range(0, random.randrange(min_word, max_word - 1)):
             f.readline()
-        return f.readline().strip()
+        return f.readline().decode('utf-8').strip()
     

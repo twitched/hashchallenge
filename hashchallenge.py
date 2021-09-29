@@ -1,31 +1,26 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
 """
 Create hash cracking challenges
 """
 
-import os, sys, argparse, shlex, challenge, tabulate, collections
+import os, sys, argparse, shlex, challenge, collections, tabulate
 
 pwd = os.getcwd()
 
 def main(argv):
     args = parse_args(argv)
-    print args
+    print(args)
     create_challenge_files(args)
 
 def parse_args(argv):
     parser = argparse.ArgumentParser(description='Create hash cracking challenges',epilog=file_description(),formatter_class=argparse.RawDescriptionHelpFormatter)
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--namelist', type=file, help="file containing challenge names, one per line")
+    group.add_argument('--namelist', type=argparse.FileType('r', encoding='utf-8'), help="file containing challenge names, one per line")
     group.add_argument('--number', default=2, type=int, help="number of challenges to create")
-    parser.add_argument('--challenge-file', type=file, required=True, help="File containing a list of challenges to add")
+    parser.add_argument('--challenge-file', type=argparse.FileType('r', encoding='utf-8'), required=True, help="File containing a list of challenges to add")
     parser.add_argument('--output-dir', required=True, help="Directory where output files will go")
-    parser.add_argument('--header-file', type=file, help="File containing a header to go before the table of challenges")
+    parser.add_argument('--header-file', type=argparse.FileType('r', encoding='utf-8'), help="File containing a header to go before the table of challenges")
 
     return parser.parse_args(argv)
 
@@ -84,7 +79,7 @@ def write_challenges_to_file(challenges, file, header, show_collision):
                                 ('Method', ''))))
         counter = counter + 1
 
-    file.write(header)
+    file.write(header + "\n")
     file.write(tabulate.tabulate(challenge_table, headers="keys", tablefmt="pipe"))
     file.close()
 
@@ -99,7 +94,7 @@ def generate_challenges(challenge_file):
     return challenges
 
 def generate_challenge_from_line(line):
-    print line
+    print(line)
     parts = shlex.split(line)
     if len(parts) > 4:
         return challenge.Mask_challenge(parts[0], parts[2], parts[3], parts[1], parts[4], int(parts[5]), int(parts[6]))
