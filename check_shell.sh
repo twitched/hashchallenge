@@ -1,0 +1,9 @@
+which python
+python --version
+which python3
+python3 --version
+which ruby
+ruby --version
+which sh
+which zsh
+which bash
