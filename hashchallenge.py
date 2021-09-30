@@ -16,7 +16,7 @@ def main(argv):
 def parse_args(argv):
     parser = argparse.ArgumentParser(description='Create hash cracking challenges',epilog=file_description(),formatter_class=argparse.RawDescriptionHelpFormatter)
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--namelist', type=argparse.FileType('r', encoding='utf-8'), help="file containing challenge names, one per line")
+    group.add_argument('--namelist', help="a csv file containing challenge 'user_id' and 'name'")
     group.add_argument('--number', default=2, type=int, help="number of challenges to create")
     parser.add_argument('--challenge-file', type=argparse.FileType('r', encoding='utf-8'), required=True, help="File containing a list of challenges to add")
     parser.add_argument('--output-dir', required=True, help="Directory where output files will go")
@@ -41,22 +41,30 @@ def file_description():
 
 def create_challenge_files(args):
     if args.namelist:
-        for name in args.namelist:
-            challenges = generate_challenges(args.challenge_file)
-            args.challenge_file.seek(0)
-            challengedir = os.path.join(pwd, args.output_dir, "challenges")
-            if not os.path.exists(challengedir):
-                os.makedirs(challengedir)
-            challengenamedir = os.path.join(challengedir, name.strip())
-            if not os.path.exists(challengenamedir):
-                os.makedirs(challengenamedir)
-            solutiondir = os.path.join(pwd, args.output_dir, "solutions")
-            if not os.path.exists(solutiondir):
-                os.makedirs(solutiondir)
-            write_challenges_to_file(challenges, os.path.join(challengenamedir, name.strip() + ".csv"), False)
-            write_challenges_to_file(challenges, os.path.join(solutiondir, name.strip() + "_solution.csv"), True)
-        args.challenge_file.close()
-
+        with open(args.namelist, 'r', newline='') as csvfile, open(os.path.splitext(args.namelist)[0] + '_out.csv', 'w', newline='') as outfile:
+            reader = csv.DictReader(csvfile)
+            writer = csv.writer(outfile)
+            writer.writerow(['user_id', 'name', 'challenge_file', 'solution_file'])
+            for row in reader:
+                name = row['name']
+                challenges = generate_challenges(args.challenge_file)
+                args.challenge_file.seek(0)
+                challengedir = os.path.join(pwd, args.output_dir, "challenges")
+                if not os.path.exists(challengedir):
+                    os.makedirs(challengedir)
+                challengenamedir = os.path.join(challengedir, name.strip())
+                if not os.path.exists(challengenamedir):
+                    os.makedirs(challengenamedir)
+                solutiondir = os.path.join(pwd, args.output_dir, "solutions")
+                if not os.path.exists(solutiondir):
+                    os.makedirs(solutiondir)
+                challenge_file = os.path.join(challengenamedir, name.strip()) + ".csv"
+                solution_file = os.path.join(solutiondir, name.strip() + "_solution.csv")
+                write_challenges_to_file(challenges, challenge_file, False)
+                write_challenges_to_file(challenges, solution_file, True)
+                writer.writerow([row['user_id'], name, challenge_file, solution_file])
+                
+                
 
 def write_challenges_to_file(challenges, file, show_collision):
     """Writes the given challenges to the given file as a Markdown table"""
